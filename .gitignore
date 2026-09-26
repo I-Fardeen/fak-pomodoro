@@ -1,0 +1,25 @@
+# OS / editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Local development certificates
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+https_server.py
+
+# Local server / development files
+*.log
+
+# IDEs
+.vscode/
+.idea/

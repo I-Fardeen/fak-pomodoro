@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#111827"
+    >
+
+    <meta
+        name="description"
+        content="FAK Pomodoro - A simple offline Pomodoro timer."
+    >
+
+    <meta
+        name="mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="FAK Pomodoro"
+    >
+
+    <link
+        rel="manifest"
+        href="manifest.json"
+    >
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="icons/icon-192.svg"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="icons/icon-192.svg"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <title>FAK Pomodoro</title>
+</head>
+
+<body>
+
+    <main class="app">
+
+        <header class="app-header">
+            <div>
+                <h1>FAK Pomodoro</h1>
+                <p class="subtitle">Focus. Work. Repeat.</p>
+            </div>
+
+            <button
+                id="settingsButton"
+                class="icon-button"
+                type="button"
+                aria-label="Open settings"
+            >
+                ⚙
+            </button>
+        </header>
+
+
+        <section class="timer-card">
+
+            <div
+                id="phaseLabel"
+                class="phase-label"
+            >
+                Focus
+            </div>
+
+            <div
+                id="timer"
+                class="timer"
+            >
+                25:00
+            </div>
+
+            <div class="progress-container">
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                ></div>
+            </div>
+
+            <div class="timer-controls">
+
+                <button
+                    id="startButton"
+                    class="primary-button"
+                    type="button"
+                >
+                    Start
+                </button>
+
+                <button
+                    id="resetButton"
+                    class="secondary-button"
+                    type="button"
+                >
+                    Reset
+                </button>
+
+                <button
+                    id="skipButton"
+                    class="secondary-button"
+                    type="button"
+                >
+                    Skip
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="stats-section">
+
+            <h2>Statistics</h2>
+
+            <div class="lifetime-card">
+
+                <span class="stat-label">
+                    Pomodoros completed
+                </span>
+
+                <strong
+                    id="completedPomodoros"
+                    class="lifetime-value"
+                >
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="today-grid">
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        Today
+                    </span>
+
+                    <strong id="todayPomodoros">
+                        0
+                    </strong>
+
+                    <span class="stat-description">
+                        Pomodoros
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        Focus
+                    </span>
+
+                    <strong id="todayFocus">
+                        0m
+                    </strong>
+
+                    <span class="stat-description">
+                        Today
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        Break
+                    </span>
+
+                    <strong id="todayBreak">
+                        0m
+                    </strong>
+
+                    <span class="stat-description">
+                        Today
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="history-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>History</h2>
+
+                    <p>
+                        Your recent Pomodoro sessions
+                    </p>
+                </div>
+
+            </div>
+
+            <div
+                id="historyList"
+                class="history-list"
+            ></div>
+
+        </section>
+
+
+        <section
+            id="settingsPanel"
+            class="settings-panel hidden"
+        >
+
+            <div class="settings-header">
+
+                <div>
+                    <h2>Settings</h2>
+
+                    <p>
+                        Configure your timer
+                    </p>
+                </div>
+
+                <button
+                    id="closeSettingsButton"
+                    class="icon-button"
+                    type="button"
+                    aria-label="Close settings"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="setting-group">
+
+                <label for="focusDuration">
+                    Focus duration
+                </label>
+
+                <div class="input-row">
+
+                    <input
+                        id="focusDuration"
+                        type="number"
+                        min="1"
+                        max="60"
+                        step="1"
+                    >
+
+                    <span>
+                        minutes
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="setting-group">
+
+                <label for="breakDuration">
+                    Break duration
+                </label>
+
+                <div class="input-row">
+
+                    <input
+                        id="breakDuration"
+                        type="number"
+                        min="1"
+                        max="30"
+                        step="1"
+                    >
+
+                    <span>
+                        minutes
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <label class="checkbox-setting">
+
+                <input
+                    id="soundEnabled"
+                    type="checkbox"
+                >
+
+                <span>
+                    Sound alert
+                </span>
+
+            </label>
+
+
+            <label class="checkbox-setting">
+
+                <input
+                    id="notificationsEnabled"
+                    type="checkbox"
+                >
+
+                <span>
+                    Browser notifications
+                </span>
+
+            </label>
+
+
+            <button
+                id="saveSettingsButton"
+                class="primary-button full-width"
+                type="button"
+            >
+                Save Settings
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
